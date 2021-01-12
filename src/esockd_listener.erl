@@ -73,6 +73,7 @@ init({Proto, ListenOn, Opts, AcceptorSup}) ->
     Port = port(ListenOn),
     process_flag(trap_exit, true),
     SockOpts = merge_addr(ListenOn, sockopts(Opts)),
+    esockd_transport:clear_pem_cache(),
     %% Don't active the socket...
     case esockd_transport:listen(Port, [{active, false} | proplists:delete(active, SockOpts)]) of
         {ok, LSock} ->

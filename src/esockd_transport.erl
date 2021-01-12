@@ -32,6 +32,7 @@
 -export([proxy_upgrade_fun/1]).
 -export([ensure_ok_or_exit/2]).
 -export([gc/1]).
+-export([clear_pem_cache/1]).
 
 -export_type([socket/0]).
 
@@ -423,3 +424,5 @@ gc(#proxy_socket{socket = Sock}) ->
     gc(Sock);
 gc(_Sock) -> ok.
 
+clear_pem_cache(_) ->
+    ssl:clear_pem_cache().
