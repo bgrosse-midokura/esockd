@@ -78,6 +78,7 @@ upgrade(Sock, [Upgrade | More]) ->
 -spec(listen(inet:port_number(), [gen_tcp:listen_option()])
       -> {ok, inet:socket()} | {error, system_limit | inet:posix()}).
 listen(Port, Opts) ->
+    ssl:clear_pem_cache(),
     gen_tcp:listen(Port, Opts).
 
 -spec(controlling_process(socket(), pid()) -> ok | {error, Reason} when
