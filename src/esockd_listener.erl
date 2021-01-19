@@ -26,6 +26,8 @@
         , get_port/1
         ]).
 
+-export([clear_pem_cache/1]).
+
 %% gen_server callbacks
 -export([ init/1
         , handle_call/3
@@ -132,3 +134,5 @@ terminate(_Reason, #state{proto = Proto, listen_on = ListenOn,
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
 
+clear_pem_cache(_) ->
+    esockd_transport:clear_pem_cache().

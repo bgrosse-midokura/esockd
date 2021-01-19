@@ -56,6 +56,8 @@
 
 -export([get_shutdown_count/1]).
 
+-export([clear_pem_cache/1]).
+
 %% Allow, Deny API
 -export([ get_access_rules/1
         , allow/2
@@ -261,6 +263,11 @@ allow({Proto, ListenOn}, CIDR) when is_atom(Proto) ->
 -spec(deny({atom(), listen_on()}, all | esockd_cidr:cidr_string()) -> ok).
 deny({Proto, ListenOn}, CIDR) when is_atom(Proto) ->
     with_listener({Proto, ListenOn}, ?FUNCTION_NAME, [CIDR]).
+
+%% @doc Clear ssl PEM files cache
+-spec(clear_pem_cache({atom(), listen_on()}) -> ok).
+clear_pem_cache({Proto, ListenOn}) when is_atom(Proto) ->
+    with_listener({Proto, ListenOn}, ?FUNCTION_NAME).
 
 %%--------------------------------------------------------------------
 %% Utils
